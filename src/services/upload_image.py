@@ -1,17 +1,24 @@
-﻿import cloudinary
+import cloudinary
 import cloudinary.uploader
-from src.config import settings
+from src.conf.config import settings
 
-# Настройка Cloudinary (можно перенести в config, если захотите)
-cloudinary.config(
-    cloud_name="your_cloud_name",
-    api_key="your_api_key",
-    api_secret="your_api_secret",
-    secure=True
-)
 
 class UploadImage:
+    cloudinary.config(
+        cloud_name=settings.cloudinary_name,
+        api_key=settings.cloudinary_api_key,
+        api_secret=settings.cloudinary_api_secret,
+        secure=True,
+    )
+
     @staticmethod
-    def upload_image(file, public_id: str):
+    def upload(file, public_id: str) -> dict:
         r = cloudinary.uploader.upload(file, public_id=public_id, overwrite=True)
         return r
+
+    @staticmethod
+    def get_url(public_id: str, version: int) -> str:
+        src_url = cloudinary.CloudinaryImage(public_id).build_url(
+            width=250, height=250, crop="fill", version=version
+        )
+        return src_url

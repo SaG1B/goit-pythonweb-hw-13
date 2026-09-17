@@ -1,11 +1,11 @@
-﻿from typing import List, Optional
+from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query, Request
 from sqlalchemy.orm import Session
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
 from src.database.db import get_db
-from src.models.models import User
+from src.database.models import User
 from src.schemas import ContactModel, ContactResponse
 from src.repository import contacts as repository_contacts
 from src.services.auth import auth_service

@@ -1,11 +1,11 @@
-﻿from fastapi import APIRouter, HTTPException, Depends, status, BackgroundTasks, Request
+from fastapi import APIRouter, HTTPException, Depends, status, BackgroundTasks, Request
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm
 from jose import jwt, JWTError
 
 from src.database.db import get_db
 from src.schemas import UserModel, UserResponse, TokenModel
-from src.models.models import User
+from src.database.models import User
 from src.services.auth import auth_service
 from src.services.email import send_email
 from src.config import settings

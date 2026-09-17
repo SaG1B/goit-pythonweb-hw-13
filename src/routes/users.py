@@ -1,8 +1,8 @@
-﻿from fastapi import APIRouter, Depends, UploadFile, File
+from fastapi import APIRouter, Depends, UploadFile, File
 from sqlalchemy.orm import Session
 
 from src.database.db import get_db
-from src.models.models import User
+from src.database.models import User
 from src.schemas import UserResponse
 from src.services.auth import auth_service
 from src.services.upload_image import UploadImage
