@@ -14,10 +14,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Підключення роутерів
-app.include_router(auth.router, prefix="/api")
-app.include_router(contacts.router, prefix="/api")
-app.include_router(users.router, prefix="/api")
+# Підключення роутерів з правильними префіксами
+app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+app.include_router(contacts.router, prefix="/api/contacts", tags=["contacts"])
+app.include_router(users.router, prefix="/api/users", tags=["users"])
 
 
 @app.get("/")
